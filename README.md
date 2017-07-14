@@ -7,7 +7,7 @@ Xtrify is a web based note-taking application. This application is intended to r
 
 Group members are as following,
 
-Ali Atlı - 21302442
-Seda Gülkesen - 21302403
-Atakan Özdemir - 21301134
-Usama Saqib - 21500116	
+  Ali Atlı - 21302442
+  Seda Gülkesen - 21302403
+  Atakan Özdemir - 21301134
+  Usama Saqib - 21500116	
