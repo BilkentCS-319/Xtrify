@@ -39,6 +39,9 @@
             </a>
             @{{ ribbit.user.username }}
             <span class="time">{{ ribbit.creation_date|timesince }}</span>
+            <a href="/note/{{ ribbit.heading }}">
+                <p>{{ribbit.heading}}</p>
+            </a>   
             <p>{{ ribbit.content }}</p>
         </div>
         {% endfor %}

@@ -13,4 +13,7 @@ urlpatterns = patterns('',
     url(r'^users/$', 'ribbit_app.views.users'),
     url(r'^users/(?P<username>\w{0,30})/$', 'ribbit_app.views.users'),
     url(r'^follow$', 'ribbit_app.views.follow'),
+    url(r'^note/(?P<heading>\w{0,140})/$', 'ribbit_app.views.note'),
+    url(r'^note$','ribbit_app.views.note'),
+    url(r'^recommendation$', 'ribbit_app.views.recommendation')
 )

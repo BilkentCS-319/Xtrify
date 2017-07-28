@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="panel left">
+        <h1>Edit Note</h1>
+        <form action="/note" method="post">{% csrf_token %}
+	        {% for field in form %}
+	        	{{ field }}
+	        {% endfor %}
+	        <input type="submit" value="Save">
+	        <input type="submit" name="extract" value="Xtract">
+	        <input type="submit" name="recommend" value="Xtrify!">
+        </form>
+        <div class="ribbitWrapper">
+            <img class="avatar" src="{{ ribbit.user.profile.gravatar_url }}">
+            <span class="name">{{ ribbit.user.first_name }}</span>@{{ ribbit.user.username }}
+            <span class="time">{{ ribbit.creation_date|timesince }}</span>
+            <p>{{ ribbit.heading }}</p>
+            <p>{{ ribbit.content }}</p>
+        </div>
+    </div>
+{% endblock %}

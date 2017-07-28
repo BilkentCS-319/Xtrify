@@ -19,7 +19,7 @@
         </p>
     </div>
     <div class="panel left">
-        <h1>Buddies' Ribbits</h1>
+        <h1>My Notes</h1>
         {% for ribbit in ribbits %}
         <div class="ribbitWrapper">
             <a href="/users/{{ ribbit.user.username }}">
@@ -27,6 +27,9 @@
                 <span class="name">{{ ribbit.user.first_name }}</span>
             </a>
             @{{ ribbit.user.username }}
+            <a href="/note/{{ ribbit.heading }}">
+                <p>{{ribbit.heading}}</p>
+            </a> 
             <p>
                 {{ ribbit.content }}
             </p>

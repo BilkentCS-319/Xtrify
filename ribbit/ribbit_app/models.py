@@ -4,7 +4,9 @@ import hashlib
  
  
 class Ribbit(models.Model):
-    content = models.CharField(max_length=140)
+    heading = models.CharField(max_length=140)
+    content = models.CharField(max_length=50000)
+    keywords = models.CharField(max_length=300)
     user = models.ForeignKey(User)
     creation_date = models.DateTimeField(auto_now=True, blank=True)
  

@@ -6,8 +6,11 @@ from ribbit_app.models import Ribbit
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.http import Http404
+from django import forms
 from django.core.exceptions import ObjectDoesNotExist
-
+import rake
+import Recommendation
+import re
 
 def index(request, auth_form=None, user_form=None):
     # User is logged in
@@ -129,3 +132,54 @@ def follow(request):
             except ObjectDoesNotExist:
                 return redirect('/users/')
     return redirect('/users/')
+
+#bug 1 solution is to assign to a global heading='' the current heading
+#then uset it in instance=ribbit.obje....(heading=heading_global)
+global_heading=''
+@login_required
+def note(request, heading=""):
+	if heading:	
+		try:
+			new_note = Ribbit.objects.get(heading=heading)
+			form = RibbitForm(request.POST or None, instance=new_note)
+			print 'line 142'
+			global_heading=heading
+		except Ribbit.DoesNotExist:
+			redirect('/')
+		return render(request, 'detailed_note.html', {'ribbit':new_note, 'form': form})
+
+	if request.POST.get('extract'):
+		extractor = rake.Rake('/home/ali/ribbit/ribbit_app/SmartStoplist.txt')
+		note = Ribbit.objects.get(heading=request.POST['heading'])
+		keywords = extractor.run(note.content)
+		keywords = [str(keywords[x][0]) for x in range(len(keywords))]
+		keywords=str(keywords)[1:-1]
+		note.keywords = keywords
+		note.save()
+		h=request.POST['heading']
+		return redirect('/note/'+h)
+
+	if request.POST.get('recommend'):
+		rec = Recommendation.Recommendation()
+		note = Ribbit.objects.get(heading=request.POST['heading'])
+		keywords = note.keywords
+		keywords = re.sub('[\']', '', keywords)
+		keywords = keywords.split(',')
+		results = rec.search(keywords)
+		results.append('asdasd')
+		results.append('adasda')
+		print results
+		return render(request, 'recommendation.html', {'results': results}) 
+	if request.method == "POST":
+		ribbit_form = RibbitForm(request.POST, instance=Ribbit.objects.get(heading=request.POST['heading']	))
+		#ribbit_form = RibbitForm(request.POST, instance=Ribbit.objects.get(heading=global_heading))
+		
+		if ribbit_form.is_valid():
+			ribbit_form.save()
+			return redirect('/')
+
+
+def recommendation(request, form=None):
+	if request.method =='POST':
+		redirect('/ribbits')
+	

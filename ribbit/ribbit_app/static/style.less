@@ -121,10 +121,18 @@ header {
 				width: 303px;
 				height: 433px;
 				float: right;
-				textarea.ribbitText {
-					width: 249px;
-					height: 160px;
-					border: 1px solid @border-color;
+
+				textarea {
+					&.ribbitText {
+						width: 249px;
+						height: 160px;
+						border: 1px solid @border-color;
+					}
+					&.ribbitHeading {
+						width: 249px;
+						height: 20px;
+						border: 2px solid @border-color;
+					}
 				}
 			}
 			&.left {

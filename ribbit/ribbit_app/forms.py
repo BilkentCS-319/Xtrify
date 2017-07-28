@@ -39,7 +39,9 @@ class AuthenticateForm(AuthenticationForm):
 
 class RibbitForm(forms.ModelForm):
     content = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'ribbitText'}))
- 
+    heading = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'ribbitHeading'}))
+    keywords = forms.CharField(required=False, widget=forms.widgets.Textarea(attrs={'class': 'ribbitHeading'}))
+
     def is_valid(self):
         form = super(RibbitForm, self).is_valid()
         for f in self.errors.iterkeys():
@@ -50,3 +52,4 @@ class RibbitForm(forms.ModelForm):
     class Meta:
         model = Ribbit
         exclude = ('user',)
+
