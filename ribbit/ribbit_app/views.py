@@ -10,7 +10,7 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 import rake
 import Recommendation
-import re
+import r e
 
 def index(request, auth_form=None, user_form=None):
     # User is logged in
