@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Implementation of RAKE - Rapid Automtic Keyword Exraction algorithm
 # as described in:
 # Rose, S., D. Engel, N. Cramer, and W. Cowley (2010). 
