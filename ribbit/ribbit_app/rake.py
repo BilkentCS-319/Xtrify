@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Implementation of RAKE - Rapid Automtic Keyword Exraction algorithm
 # as described in:
 # Rose, S., D. Engel, N. Cramer, and W. Cowley (2010). 
@@ -6,6 +7,7 @@
 
 import re
 import operator
+import KeywordExtractor
 
 debug = False
 test = False
@@ -119,7 +121,7 @@ def generate_candidate_keyword_scores(phrase_list, word_score):
     return keyword_candidates
 
 
-class Rake(object):
+class Rake(KeywordExtractor.KeywordExtractor):
     def __init__(self, stop_words_path):
         self.stop_words_path = stop_words_path
         self.__stop_words_pattern = build_stop_word_regex(stop_words_path)
