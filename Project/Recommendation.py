@@ -7,7 +7,7 @@ class Recommendation(Recommender.Recommender):
         res_list = []
         url='http://export.arxiv.org/api/query?search_query='
         for eachKey in keywords[:len(keywords)-1]:
-            url=url+'all:'+eachKey+'+AND+'
+            url=url+'all:'+eachKey+'+OR+'
         else:
             url=url+'all:'+keywords[-1]
 
