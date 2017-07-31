@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+    <div class="panel right">
+        <h1>Create a Note</h1>
+        <p>
+            <form action="/submit" method="post">
+            {% for field in note_form %}{% csrf_token %}
+            {{ field }}
+            {% endfor %}
+            <input type="hidden" value="{{ next_url }}" name="next_url">
+            <input type="submit" value="Note!">
+            </form>
+        </p>
+    </div>
+    <div class="panel left">
+        <h1>Public Notes</h1>
+        {% for note in notes %}
+        <div class="noteWrapper">
+            <img class="avatar" src="{{ note.user.profile.gravatar_url }}">
+            <span class="name">{{ note.user.first_name }}</span>@{{ note.user.username }}
+            <span class="time">{{ note.creation_date|timesince }}</span>
+            <a href="/note/{{ note.heading }}">
+                <p>{{note.heading}}</p>
+            </a> 
+            <p>{{ note.content }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

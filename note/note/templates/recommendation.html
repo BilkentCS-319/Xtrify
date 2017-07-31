@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="panel left">
+        <h1>Results</h1>
+        <form action="/" method="post">{% csrf_token %}
+         <input type="submit" value="Done!">
+	        
+        </form>
+        {% for result in results %}
+            <a href="{{result.1}}">
+                <p>{{ result.0 }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
