@@ -10,7 +10,7 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 import rake
 import Recommendation
-import r e
+import re
 
 def index(request, auth_form=None, user_form=None):
     # User is logged in
@@ -149,7 +149,7 @@ def note(request, heading=""):
 		return render(request, 'detailed_note.html', {'ribbit':new_note, 'form': form})
 
 	if request.POST.get('extract'):
-		extractor = rake.Rake('/home/ali/ribbit/ribbit_app/SmartStoplist.txt')
+		extractor = rake.Rake('/Users/seda/Xtrify/ribbit/ribbit_app/SmartStoplist.txt')
 		note = Ribbit.objects.get(heading=request.POST['heading'])
 		keywords = extractor.run(note.content)
 		keywords = [str(keywords[x][0]) for x in range(len(keywords))]

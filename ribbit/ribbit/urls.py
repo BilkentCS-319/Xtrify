@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^follow$', 'ribbit_app.views.follow'),
     url(r'^note/(?P<heading>\w{0,140})/$', 'ribbit_app.views.note'),
     url(r'^note$','ribbit_app.views.note'),
-    url(r'^recommendation$', 'ribbit_app.views.recommendation')
+    url(r'^recommendation$', 'ribbit_app.views.recommendation'),
+    url('^signup$', 'ribbit_app.views.signup')
 )

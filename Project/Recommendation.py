@@ -1,9 +1,8 @@
 import urllib
 import re
+import Recommender
 
-
-class Recommendation:
-
+class Recommendation(Recommender.Recommender):
     def search(self, keywords):
         res_list = []
         url='http://export.arxiv.org/api/query?search_query='
